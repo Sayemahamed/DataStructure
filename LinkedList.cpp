@@ -7,7 +7,7 @@ class Node
 public:
     T data;
     Node *point;
-    Node();
+    Node(){};
     Node(T data)
     {
         this->data = data;
