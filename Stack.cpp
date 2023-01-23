@@ -60,16 +60,18 @@ public:
 
 int main()
 {
-    couldNotFindFancyWordAsStack<long long> aStack;
+    couldNotFindFancyWordAsStack<string> aStack;
     cout << aStack.size() << endl;
-    aStack.add(10);
+    aStack.add("10");
     cout << aStack.show() << endl;
-    aStack.add(20);
-    aStack.add(20);
+    aStack.add("20");
+    aStack.add("20");
     cout << aStack.size() << endl;
     cout << aStack.show() << endl;
     // aStack.pop();
     cout << aStack.show() << endl;
     cout << aStack.size() << endl;
     aStack.traverse();
+    cout << endl;
+    cout << aStack.size() << endl;
 }

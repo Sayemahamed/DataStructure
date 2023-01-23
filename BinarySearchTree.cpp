@@ -21,6 +21,16 @@ public:
 template <typename T>
 class GenericBinarySearchTree
 {
+private:
+    void depthFirstSearch(Node<T> *node)
+    {
+        if (node == NULL)
+            return;
+        depthFirstSearch(node->SmallerNodePoint);
+        cout << node->data << ' ';
+        depthFirstSearch(node->BiggerNodePoint);
+    }
+
 public:
     Node<T> *Root = NULL;
     long long rightWeight = 0, leftWeight = 0, Size = 0;
@@ -28,16 +38,76 @@ public:
     {
         if (Root == NULL)
         {
-            root = new Node<T>(data);
+            Root = new Node<T>(data);
         }
         else
         {
+            bool bigNode = false, smallNode = false;
             Node<T> *temp = Root;
             Node<T> *New = new Node<T>(data);
+            if (temp->data < data)
+            {
+                bigNode = true;
+                smallNode = false;
+            }
+            else
+            {
+                smallNode = true;
+                bigNode = false;
+            }
+            while (true)
+            {
+                if (temp->BiggerNodePoint == NULL and bigNode)
+                    break;
+                if (temp->SmallerNodePoint == NULL and smallNode)
+                    break;
+                if (temp->data < data)
+                {
+                    temp = temp->BiggerNodePoint;
+                }
+                else
+                {
+                    temp = temp->SmallerNodePoint;
+                }
+                if (temp->data < data)
+                {
+                    bigNode = true;
+                    smallNode = false;
+                }
+                else
+                {
+                    smallNode = true;
+                    bigNode = false;
+                }
+            }
+            if (bigNode)
+            {
+                rightWeight++;
+                temp->BiggerNodePoint = New;
+            }
+            else
+            {
+                leftWeight++;
+                temp->SmallerNodePoint = New;
+            }
         }
+    }
+    void traverse()
+    {
+        depthFirstSearch(Root);
+        cout << endl;
     }
 };
 // End of Generic Binary Search Tree Class Implementation
 int main()
 {
+    GenericBinarySearchTree<long long> aDamnedTree;
+    aDamnedTree.add(10);
+    aDamnedTree.add(5);
+    aDamnedTree.add(4);
+    aDamnedTree.add(6);
+    aDamnedTree.add(15);
+    aDamnedTree.add(13);
+    aDamnedTree.add(16);
+    aDamnedTree.traverse();
 }
