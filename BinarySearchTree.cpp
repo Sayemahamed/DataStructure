@@ -109,5 +109,6 @@ int main()
     aDamnedTree.add(15);
     aDamnedTree.add(13);
     aDamnedTree.add(16);
+    aDamnedTree.add(1);
     aDamnedTree.traverse();
 }
