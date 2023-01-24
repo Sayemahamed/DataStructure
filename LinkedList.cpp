@@ -6,7 +6,7 @@ class Node
 {
 public:
     T data;
-    Node *point;
+    Node<T> *point;
     Node(){};
     Node(T data)
     {
@@ -20,9 +20,11 @@ public:
 template <typename T>
 class ChainNode
 {
-public:
+private:
     Node<T> *start = NULL;
     long long siz = 0;
+
+public:
     void add(T data)
     {
         if (start == NULL)

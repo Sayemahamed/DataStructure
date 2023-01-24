@@ -20,9 +20,10 @@ public:
 template <typename T>
 class couldNotFindFancyWordAsStack
 {
-public:
+private:
     Node<T> *top = NULL;
     long long siz = 0;
+public:
     void add(T data)
     {
         Node<T> *temp = new Node<T>(data);
@@ -40,6 +41,7 @@ public:
         top = top->point;
         siz--;
     }
+    void breakStack() { top = NULL; }
     T show()
     {
         if (top == NULL)
