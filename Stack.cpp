@@ -23,10 +23,16 @@ class couldNotFindFancyWordAsStack
 private:
     Node<T> *top = NULL;
     long long siz = 0;
+
 public:
     void add(T data)
     {
         Node<T> *temp = new Node<T>(data);
+        if (!temp)
+        {
+            cout << "Stack overflow" << endl;
+            return;
+        }
         temp->point = top;
         top = temp;
         siz++;

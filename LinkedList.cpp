@@ -32,6 +32,11 @@ public:
         else
         {
             Node<T> *temp = start;
+            if (!temp)
+            {
+                cout << "Memory overflow" << endl;
+                return;
+            }
             while (temp->point != NULL)
                 temp = temp->point;
             temp->point = new Node<T>(data);

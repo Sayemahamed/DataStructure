@@ -32,18 +32,14 @@ private:
         cout << node->data << ' ';
         depthFirstSearch(node->BiggerNodePoint);
     }
-    void depthFirstSearchForOverLapping(Node<T> *firstNode, Node<T> *secondNode)
+    Node<T> *depthFirstSearchForOverLapping(Node<T> *first, Node<T> *second)
     {
-        if (secondNode == NULL or firstNode==NULL)return;
-        if(firstNode->data==secondNode->data){
-            if(firstNode->SmallerNodePoint == NULL and secondNode->SmallerNodePoint!=NULL)
-            firstNode->SmallerNodePoint=secondNode->SmallerNodePoint;
-            if(firstNode->BiggerNodePoint == NULL and secondNode->BiggerNodePoint!=NULL)
-            secondNode->BiggerNodePoint=secondNode->SmallerNodePoint;
-        }
-        depthFirstSearchForOverLapping(firstNode->SmallerNodePoint, secondNode->SmallerNodePoint);
-        firstNode->data += secondNode->data;
-        depthFirstSearchForOverLapping(firstNode->BiggerNodePoint, secondNode->BiggerNodePoint);
+        if(first==NULL)return second;
+        if(second==NULL)return first;
+        Node<T> *ans = new Node<T>(first->data + second->data);
+        ans->SmallerNodePoint = depthFirstSearchForOverLapping(first->SmallerNodePoint, second->SmallerNodePoint);
+        ans->BiggerNodePoint = depthFirstSearchForOverLapping(first->BiggerNodePoint, second->BiggerNodePoint);
+        return ans;
     }
 
 public:
@@ -110,9 +106,11 @@ public:
         depthFirstSearch(Root);
         cout << endl;
     }
-    void overLapping(GenericBinarySearchTree<T> &second)
+    GenericBinarySearchTree<T> overLapping(GenericBinarySearchTree<T> &second)
     {
-        depthFirstSearchForOverLapping(Root, second.Root);
+        GenericBinarySearchTree<T> ans;
+        ans.Root = depthFirstSearchForOverLapping(Root, second.Root);
+        return ans;
     }
 };
 // End of Generic Binary Search Tree Class Implementation
@@ -142,6 +140,6 @@ int main()
     second.add(13);
     second.traverse();
     cout << endl;
-    first.overLapping(second);
+    first=first.overLapping(second);
     first.traverse();
 }
