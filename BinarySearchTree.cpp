@@ -34,8 +34,10 @@ private:
     }
     Node<T> *depthFirstSearchForOverLapping(Node<T> *first, Node<T> *second)
     {
-        if(first==NULL)return second;
-        if(second==NULL)return first;
+        if (first == NULL)
+            return second;
+        if (second == NULL)
+            return first;
         Node<T> *ans = new Node<T>(first->data + second->data);
         ans->SmallerNodePoint = depthFirstSearchForOverLapping(first->SmallerNodePoint, second->SmallerNodePoint);
         ans->BiggerNodePoint = depthFirstSearchForOverLapping(first->BiggerNodePoint, second->BiggerNodePoint);
@@ -127,19 +129,22 @@ int main()
     aDamnedTree.add(1);
     aDamnedTree.traverse();
     cout << endl;
-    first.add(10);
+    first.add(3);
+    first.add(2);
+    first.add(1);
+    first.add(4);
     first.add(5);
     first.add(6);
-    first.add(4);
-    first.add(1);
     first.traverse();
     cout << endl;
-    second.add(10);
-    second.add(15);
-    second.add(16);
-    second.add(13);
+    second.add(3);
+    second.add(2);
+    second.add(1);
+    second.add(4);
+    second.add(5);
+    second.add(6);
     second.traverse();
     cout << endl;
-    first=first.overLapping(second);
+    first = first.overLapping(second);
     first.traverse();
 }
