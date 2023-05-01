@@ -40,6 +40,10 @@ class DQ{
     }
     void pushBack(T data){
         Node<T>* tmp =new Node<T>(data);
+        if(tmp==NULL){
+            cout<<"Overflow"<<endl;
+            return;
+        }
         tmp->prev=tail->prev;
         tail->prev->next = tmp;
         tail->prev=tmp;
@@ -48,6 +52,10 @@ class DQ{
     }
     void pushFront(T data){
         Node<T>* tmp=new Node<T>(data);
+        if(tmp==NULL){
+            cout<<"Overflow"<<endl;
+            return;
+        }
         tmp->next=head->next;
         head->next->prev=tmp;
         head->next=tmp;
