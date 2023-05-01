@@ -117,7 +117,7 @@ int main(){
     dq.popBack();
     cout<<dq.back()<<endl<<endl;
     cout<<dq.size()<<endl;
-    //    dq.headTraverse();
+    // dq.headTraverse();
     // cout<<endl;
     // dq.tailTraversal();
     // cout<<endl<<endl; 
