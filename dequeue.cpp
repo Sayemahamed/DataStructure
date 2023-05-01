@@ -54,7 +54,37 @@ class DQ{
         tmp->prev=head;
         siz++;
     }
+    void popBack(){
+        Node<T>*tmp=tail->prev;
+        if(tail->prev==head){
+            cout<<"Underflow"<<endl;
+            return;
+        }
+        else{
+            tail->prev->prev->next=tail;
+            tail->prev->next=NULL;
+            tail->prev=tail->prev->prev;
+            delete tmp;
+        }
+        siz--;
+    }
+    void popFront(){
+        Node<T>*tmp=head->next;
+        if(head->next==tail){
+            cout<<"Underflow"<<endl;
+            return;
+        }
+        else{
+            head->next->next->prev=head;
+            head->next->prev=NULL;
+            head->next=head->next->next;
+            delete tmp;
+        }
+        siz--;
+    }
     long long size(){return siz;}
+    T front(){return siz?head->next->data:NULL;}
+    T back(){return siz?tail->prev->data:NULL;}
 };
 int main(){
     DQ<long long> dq;
@@ -68,4 +98,19 @@ int main(){
     // cout<<endl<<endl;
     // dq.tailTraversal();
     cout<<dq.size()<<endl;
+    cout<<dq.front()<<endl;
+    cout<<dq.back()<<endl<<endl;
+    // dq.headTraverse();
+    // cout<<endl;
+    // dq.tailTraversal();
+    // cout<<endl<<endl;
+    dq.popFront();
+    cout<<dq.front()<<endl;
+    dq.popBack();
+    cout<<dq.back()<<endl<<endl;
+    cout<<dq.size()<<endl;
+    //    dq.headTraverse();
+    // cout<<endl;
+    // dq.tailTraversal();
+    // cout<<endl<<endl; 
 }
